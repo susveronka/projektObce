@@ -8,7 +8,7 @@
     <?php $nav = array( 
       'class' => 'nav-link' ); 
     ?> 
-    <?php foreach($kraj as $navitem):?> <link><?= anchor("popisObci/". $navitem->kod, $navitem->nazev, ['class' => 'btn btn-primary']); ?> </link>
+    <?php foreach($kraj as $navitem):?> <link><?= anchor("popisOkresu/". $navitem->kod, $navitem->nazev, ['class' => 'btn btn-primary']); ?> </link>
     </ul>
     <?php endforeach; ?>
   </div>

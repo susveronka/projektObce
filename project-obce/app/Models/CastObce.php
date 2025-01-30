@@ -6,10 +6,10 @@ use CodeIgniter\Model;
 
 class CastObce extends Model
 {
-    protected $table            = 'castobces';
+    protected $table            = 'castobce';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [];
