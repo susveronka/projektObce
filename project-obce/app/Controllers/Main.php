@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Controllers\view;
 use CodeIgniter\HTTP\ResponseInterface;
 
 use App\Models\AdresniMisto;
@@ -30,11 +31,25 @@ var $ulice;
        $this->okres = new Okres();
        $this->so = new SO();
        $this->ulice = new Ulice();
-        
+       $this->data["ZK"] = $this->kraj->findAll();
     }
 
     public function index()
     {
-        return view('index');
+        //
+    }
+
+    public function ZK()
+    {
+        $okresCely = $this->okres->select('okres.nazev, okres.kod')->join('kraj','kraj.kod = okres.kraj','inner')->where('kraj.nazev', 'Zlínský kraj')->findAll();
+        $this->data["okresCely"] = $okresCely;
+        echo view('ZK', $this->data);
+    }
+
+    public function popisOkresu($okres) {
+        $okresCely = $this->okres->select('okres.nazev, okres.kod')->join('kraj','kraj.kod = okres.kraj','inner')->where('kraj.nazev', 'Zlínský kraj')->findAll();
+        $this->data["okresCely"] = $okresCely;
+        $this->data['opopisOkresu'] = $this->okres->find($okres);
+        echo view('popisOkresu', $this->data);
     }
 }
