@@ -1,1 +1,0 @@
-<? include ('layout/navbar.php') ?>

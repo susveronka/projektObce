@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Main::ZK');
-$routes->get('ZK', 'Main::ZK');
-$routes->get('popisOkresu(:num)', 'Main::popisOkresu/$1');
+$routes->get('/', 'Main::kraj');
+$routes->get('kraj', 'Main::kraj');
+$routes->get('popisOkresu/(:num)', 'Main::popisOkresu/$1');
 

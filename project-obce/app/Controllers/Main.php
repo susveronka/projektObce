@@ -11,6 +11,7 @@ use App\Models\Okres;
 use App\Models\SO;
 use App\Models\Ulice;
 use App\Models\Kraj;
+use App\Models\OkresCely;
 
 class Main extends BaseController
 {
@@ -21,6 +22,8 @@ var $castObce;
 var $okres;
 var $so;
 var $ulice;
+var $data;
+var $okresCely;
 
     public function __construct()
     {
@@ -31,7 +34,8 @@ var $ulice;
        $this->okres = new Okres();
        $this->so = new SO();
        $this->ulice = new Ulice();
-       $this->data["ZK"] = $this->kraj->findAll();
+       $this->okresCely = new OkresCely();
+       $this->data["kraj"] = $this->kraj->findAll();
     }
 
     public function index()
@@ -39,17 +43,21 @@ var $ulice;
         //
     }
 
-    public function ZK()
+    public function kraj()
     {
         $okresCely = $this->okres->select('okres.nazev, okres.kod')->join('kraj','kraj.kod = okres.kraj','inner')->where('kraj.nazev', 'Zlínský kraj')->findAll();
         $this->data["okresCely"] = $okresCely;
-        echo view('ZK', $this->data);
+        echo view('kraj', $this->data);
     }
 
-    public function popisOkresu($okres) {
-        $okresCely = $this->okres->select('okres.nazev, okres.kod')->join('kraj','kraj.kod = okres.kraj','inner')->where('kraj.nazev', 'Zlínský kraj')->findAll();
-        $this->data["okresCely"] = $okresCely;
-        $this->data['opopisOkresu'] = $this->okres->find($okres);
-        echo view('popisOkresu', $this->data);
+    
+    public function popisOkresu() {
+
+        $table= $this->obec->findAll();
+        $obce["obec"] = $table;
+        echo view("popisOkresu", $obce);
+
+      
     }
 }
+
